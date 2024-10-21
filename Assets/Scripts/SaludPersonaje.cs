@@ -8,13 +8,15 @@ public class SaludPersonaje : MonoBehaviour
     public int saludActual = 5;
     Rigidbody2D miCuerpo;
     public float empujeDano = 2;
-    //
+    private int cantidadVidas = 3;
+    
     public SpriteRenderer miRenderer;
     public Collider2D miCollider;
     public GameObject gorraPersonaje;
 
     void Start(){
         miCuerpo = GetComponent<Rigidbody2D>();
+        ControlIU.Instance.ActualizarIUVidas(cantidadVidas);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
