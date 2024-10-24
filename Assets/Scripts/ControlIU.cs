@@ -9,6 +9,7 @@ public class ControlIU : MonoBehaviour
     public TMP_Text textoReloj;
     public TMP_Text textoPuntaje;
     public TMP_Text textoVidas;
+    public TMP_Text textoCreditos;
 
     public GameObject menuGameOver;
     void Awake()
@@ -26,6 +27,11 @@ public class ControlIU : MonoBehaviour
     public void ActualizarIUReloj(int tiempoRestante)
     {
         textoReloj.text = tiempoRestante.ToString();
+    }
+    
+    public void ActualizarIUCreditos(int cantidadCreditos)
+    {
+        textoCreditos.text = cantidadCreditos.ToString();
     }
 
     public void MostrarMenuGameOver()

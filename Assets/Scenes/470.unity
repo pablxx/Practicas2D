@@ -892,6 +892,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cantidadTiempo: 60
+  cantidadCreditos: 2
 --- !u!4 &204084656
 Transform:
   m_ObjectHideFlags: 0
@@ -2475,6 +2476,7 @@ MonoBehaviour:
   miVelocidad: 0
   fuerzaSalto: {x: 0, y: 0}
   miCuerpo: {fileID: 0}
+  saludPersonaje: {fileID: 0}
 --- !u!1 &943313265
 GameObject:
   m_ObjectHideFlags: 0
@@ -2505,6 +2507,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textoReloj: {fileID: 1202979466}
+  textoPuntaje: {fileID: 1115206698}
+  textoVidas: {fileID: 1839594368}
+  textoCreditos: {fileID: 1495676911}
   menuGameOver: {fileID: 1906276039}
 --- !u!4 &943313267
 Transform:
@@ -2831,7 +2836,7 @@ GameObject:
   - component: {fileID: 1115206699}
   - component: {fileID: 1115206698}
   m_Layer: 5
-  m_Name: txtSocre
+  m_Name: txtScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4069,6 +4074,7 @@ MonoBehaviour:
   miVelocidad: 2
   fuerzaSalto: {x: 0, y: 4}
   miCuerpo: {fileID: 1593649271}
+  saludPersonaje: {fileID: 1593649274}
 --- !u!50 &1593649271
 Rigidbody2D:
   serializedVersion: 4
@@ -4158,11 +4164,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6510ca22764efe64ca9a86b3ed8d83bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saludActual: 10
+  saludActual: 1
   empujeDano: 3
   miRenderer: {fileID: 1593649268}
   miCollider: {fileID: 1593649272}
   gorraPersonaje: {fileID: 166972202}
+  muerto: 0
 --- !u!1 &1597665092
 GameObject:
   m_ObjectHideFlags: 0

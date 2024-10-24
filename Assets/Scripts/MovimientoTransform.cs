@@ -11,18 +11,20 @@ public class MovimientoTransform : MonoBehaviour
 
     public Vector2 fuerzaSalto;
     public Rigidbody2D miCuerpo;
+    public SaludPersonaje saludPersonaje;
 
-    //METODOS
     void Start()
     {
-        //Debug.Log("Estoy en el metodo Start");
     }
 
     void Update()
     {
-        //Debug.Log("Estoy en el metodo Update");
-        Movimiento();
+        if (saludPersonaje.muerto == true)
+        {
+            return;
+        }
 
+        Movimiento();
     }
 
     void Movimiento()
