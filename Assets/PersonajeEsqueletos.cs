@@ -6,16 +6,25 @@ public class PersonajeEsqueletos : MonoBehaviour
 {
     public Animator miAnimador;
     public Rigidbody2D miCuerpo;
-    void Start()
-    {
-        
-    }
+    public float velMax;
+    public float multipVel;
+    public float valorMultiplicador;
+    //public bool corriendo;
 
     void Update()
     {
         Vector2 entradaJugador = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        
-        miCuerpo.velocity = new Vector2(entradaJugador.x * 2, miCuerpo.velocity.y);
-        miAnimador.SetFloat("velX", miCuerpo.velocity.x);
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            multipVel = 1;
+        }
+        else
+        {
+            multipVel = valorMultiplicador;
+        }
+
+        miCuerpo.velocity = new Vector2(entradaJugador.x * velMax * multipVel, miCuerpo.velocity.y);
+        miAnimador.SetFloat("velX", Mathf.Abs(miCuerpo.velocity.x));
     }
 }

@@ -1071,6 +1071,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   miAnimador: {fileID: 1670789330855134411}
   miCuerpo: {fileID: 1122964694}
+  velMax: 6
+  multipVel: 0
+  valorMultiplicador: 0.35
 --- !u!50 &1122964694
 Rigidbody2D:
   serializedVersion: 4
@@ -1859,8 +1862,8 @@ Transform:
   m_GameObject: {fileID: 1546282525}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1373, y: -3.9009, z: 0}
-  m_LocalScale: {x: 18.297289, y: 2.8018, z: 1}
+  m_LocalPosition: {x: 33.1786, y: -3.9009, z: 0}
+  m_LocalScale: {x: 84.928696, y: 2.8018, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
