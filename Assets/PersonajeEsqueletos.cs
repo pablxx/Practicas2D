@@ -15,6 +15,13 @@ public class PersonajeEsqueletos : MonoBehaviour
     {
         Vector2 entradaJugador = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
+        if ((entradaJugador.x > 0 && transform.localScale.x < 0) ||
+            entradaJugador.x < 0 && transform.localScale.x > 0)
+        {
+            transform.localScale = new Vector3(transform.localScale.x * -1f, transform.localScale.y, transform.localScale.z);
+        }
+        
+
         if (Input.GetKey(KeyCode.LeftShift))
         {
             multipVel = 1;
