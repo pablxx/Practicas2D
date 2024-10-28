@@ -7,12 +7,19 @@ public class ControlArmas : MonoBehaviour
     public MovimientoTransform movTransform;
     public GameObject proyectil;
     public Transform transformArma;
+    public Arma armaMano;
+    public Arma armaArrojadiza;
 
     void Update()
     {
-        if (movTransform.miCuerpo.velocity.y == 0 && Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1"))
         {
             Atacar();
+            armaMano.Disparar();
+        }
+        if (Input.GetButtonDown("Fire2"))
+        {
+            armaArrojadiza.Disparar();
         }
     }
 
