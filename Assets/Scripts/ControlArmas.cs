@@ -5,7 +5,6 @@ using UnityEngine;
 public class ControlArmas : MonoBehaviour
 {
     public MovimientoTransform movTransform;
-    public GameObject proyectil;
     public Transform transformArma;
     public Arma armaMano;
     public Arma armaArrojadiza;
@@ -14,7 +13,6 @@ public class ControlArmas : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            Atacar();
             armaMano.Disparar();
         }
         if (Input.GetButtonDown("Fire2"))
@@ -23,14 +21,5 @@ public class ControlArmas : MonoBehaviour
         }
     }
 
-    void Atacar()
-    {
-        Debug.Log("ATACO!!!!");
-        GameObject bala = Instantiate(proyectil,
-                                    transformArma.position, 
-                                    transformArma.rotation);
-        bala.GetComponent<MoverBala>().ActualizarDireccion(transform.localScale.x);
-        //bala.SendMessage("MoverBala");
-        //AQUI DEBERIAMOS ATACAR
-    }
+    
 }

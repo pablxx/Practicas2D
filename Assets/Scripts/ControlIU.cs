@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -10,8 +11,10 @@ public class ControlIU : MonoBehaviour
     public TMP_Text textoPuntaje;
     public TMP_Text textoVidas;
     public TMP_Text textoCreditos;
+    public TMP_Text textoGranadas;
 
     public GameObject menuGameOver;
+
     void Awake()
     {
         if (Instance != null)
@@ -47,5 +50,10 @@ public class ControlIU : MonoBehaviour
     public void ActualizarIUVidas(int cantidadVidas)
     {
         textoVidas.text = cantidadVidas.ToString();
+    }
+
+    public void ActualizarIUGranadas(int cantidadGranadas)
+    {
+        textoGranadas.text = cantidadGranadas.ToString();
     }
 }

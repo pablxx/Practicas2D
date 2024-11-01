@@ -2510,6 +2510,7 @@ MonoBehaviour:
   textoPuntaje: {fileID: 1115206698}
   textoVidas: {fileID: 1839594368}
   textoCreditos: {fileID: 1495676911}
+  textoGranadas: {fileID: 2008298890}
   menuGameOver: {fileID: 1906276039}
 --- !u!4 &943313267
 Transform:
@@ -3978,11 +3979,12 @@ GameObject:
   - component: {fileID: 1593649269}
   - component: {fileID: 1593649268}
   - component: {fileID: 1593649270}
-  - component: {fileID: 1593649273}
   - component: {fileID: 1593649271}
   - component: {fileID: 1593649272}
   - component: {fileID: 1593649274}
+  - component: {fileID: 1593649273}
   - component: {fileID: 1593649275}
+  - component: {fileID: 1593649276}
   m_Layer: 0
   m_Name: Personaje
   m_TagString: Player
@@ -4151,9 +4153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movTransform: {fileID: 1593649270}
-  proyectil: {fileID: 7563494672506555556, guid: b9565aa9db1ec4a449c78d74544cf26f, type: 3}
   transformArma: {fileID: 271947605}
-  armaMano: {fileID: 0}
+  armaMano: {fileID: 1593649276}
   armaArrojadiza: {fileID: 1593649275}
 --- !u!114 &1593649274
 MonoBehaviour:
@@ -4188,12 +4189,36 @@ MonoBehaviour:
   nombre: granada
   cantidadBalas: 3
   "da\xF1o": 50
-  rango: 10
+  rango: 5
   cadencia: 2
   icono: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
   grafico: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   proyectil: {fileID: 2835660189713929829, guid: 1489121da7c817544bddcfe4d622a59a, type: 3}
   tipoArma: 2
+  controlArmas: {fileID: 1593649273}
+  areaEfecto: 15
+--- !u!114 &1593649276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593649267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06f35638779ff2f40a6862f5c9723a46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nombre: pistola
+  cantidadBalas: 0
+  "da\xF1o": 10
+  rango: 100
+  cadencia: 0
+  icono: {fileID: -8214659233352977707, guid: e48e3656cac05c14aaffd7be68e42233, type: 3}
+  grafico: {fileID: 3487803296576199769, guid: e48e3656cac05c14aaffd7be68e42233, type: 3}
+  proyectil: {fileID: 7563494672506555556, guid: b9565aa9db1ec4a449c78d74544cf26f, type: 3}
+  tipoArma: 0
+  controlArmas: {fileID: 1593649273}
 --- !u!1 &1597665092
 GameObject:
   m_ObjectHideFlags: 0
