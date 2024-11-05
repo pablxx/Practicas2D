@@ -2,7 +2,19 @@ using UnityEngine;
 
 public class SaludEnemigo : MonoBehaviour
 {
-    public int saludEnemigo = 5;
+    public float saludEnemigo = 5;
+
+    public void AplicarDaño(float dañoObjetivo)
+    {
+        if (saludEnemigo - dañoObjetivo > 0)
+        {
+            saludEnemigo -= dañoObjetivo;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D otroObjeto)
     {
@@ -23,7 +35,7 @@ public class SaludEnemigo : MonoBehaviour
        // otroObjeto.GetComponent<MoverBala>().dañoBala;
     }
 
-    int ObtenerSaludActual()
+    float ObtenerSaludActual()
     {
         return saludEnemigo;
     }

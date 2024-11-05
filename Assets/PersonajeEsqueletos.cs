@@ -13,6 +13,9 @@ public class PersonajeEsqueletos : MonoBehaviour
     public Transform detectorPies;
     public LayerMask capaPiso;
     public float fuerzaSalto;
+    public bool objetoCerca;
+    public Transform huesoMano;
+    public Transform objetoEnMano;
     //public bool corriendo;
 
     void Update()
@@ -47,9 +50,11 @@ public class PersonajeEsqueletos : MonoBehaviour
             miAnimador.SetTrigger("ataqueL");
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && objetoCerca == true)
         {
-            miAnimador.SetLayerWeight(1, 1);
+            miAnimador.SetTrigger("recoger");
+
+            //miAnimador.SetLayerWeight(1, 1);
         }
 
         if (Input.GetKey(KeyCode.LeftShift))
@@ -60,15 +65,47 @@ public class PersonajeEsqueletos : MonoBehaviour
         {
             multipVel = valorMultiplicador;
         }
-
-        if (Input.GetButtonDown("Jump"))
-        {
-            miCuerpo.AddForce(new Vector2(0, fuerzaSalto), ForceMode2D.Impulse);
-        }
-
         miCuerpo.velocity = new Vector2(entradaJugador.x * velMax * multipVel, miCuerpo.velocity.y);
-        
-        
+    }
+
+    public void RecogerObjeto() {
+        if (objetoEnMano != null)
+        {
+            Debug.Log("Intentando recoger");
+            objetoEnMano.GetComponent<Rigidbody2D>().simulated = false; 
+            objetoEnMano.GetComponent<Collider2D>().enabled = false;
+            objetoEnMano.parent = huesoMano;
+            objetoEnMano.position = new Vector2(huesoMano.position.x + 1f, huesoMano.position.y);
+            StartCoroutine(RutinaSubirBrazos());
+        }
+    }
+
+    IEnumerator RutinaSubirBrazos()
+    {
+        while (miAnimador.GetLayerWeight(1) < 1)
+        {
+            float pesoActual = miAnimador.GetLayerWeight(1);
+            miAnimador.SetLayerWeight(1, pesoActual + 0.25f);
+            yield return null;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.CompareTag("recogible"))
+        {
+            objetoCerca = true;
+            objetoEnMano = collision.transform;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.transform.CompareTag("recogible"))
+        {
+            objetoCerca = false;
+            //objetoEnMano = null;
+        }
     }
 
     private void FixedUpdate()

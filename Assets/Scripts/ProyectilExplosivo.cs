@@ -5,7 +5,8 @@ using UnityEngine;
 public class ProyectilExplosivo : MonoBehaviour
 {
     public float tiempoEspera = 3;
-    public float areaGranada;
+    private float dañoProyectil;
+    private float areaGranada;
     public LayerMask capaEnemigos;
     // Start is called before the first frame update
     void Start()
@@ -13,16 +14,27 @@ public class ProyectilExplosivo : MonoBehaviour
         StartCoroutine(ExplotarGranada());
     }
 
+    public void ActualizarDatos(float areaEfecto, float daño)
+    {
+        areaGranada = areaEfecto;
+        dañoProyectil = daño;
+    }
+
     IEnumerator ExplotarGranada()
     {
         yield return new WaitForSeconds(tiempoEspera);
-        RaycastHit2D enemigosDetectados = Physics2D.CircleCast(transform.position, 
+        RaycastHit2D[] enemigosDetectados = Physics2D.CircleCastAll(transform.position, 
                                                                 areaGranada, 
                                                                 Vector2.right,
                                                                 capaEnemigos);
-        if (enemigosDetectados == true)
+        
+        if (enemigosDetectados.Length > 0)
         {
             Debug.Log("Enemigos detectados");
+            for (int i = 0; i < enemigosDetectados.Length; i++)
+            {
+                enemigosDetectados[i].transform.GetComponent<SaludEnemigo>().AplicarDaño(dañoProyectil);
+            }
         }
         else
         {

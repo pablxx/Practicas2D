@@ -8,6 +8,9 @@ public class ControlArmas : MonoBehaviour
     public Transform transformArma;
     public Arma armaMano;
     public Arma armaArrojadiza;
+    
+    //public Arma armaLarga;
+    //List<Arma> misArmas;
 
     void Update()
     {

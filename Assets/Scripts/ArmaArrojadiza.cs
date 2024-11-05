@@ -12,7 +12,6 @@ public class ArmaArrojadiza : Arma
     private void Start()
     {
         ControlIU.Instance.ActualizarIUGranadas(cantidadBalas);
-
     }
 
     public override void Disparar()
@@ -28,7 +27,12 @@ public class ArmaArrojadiza : Arma
                                    controlArmas.transformArma.rotation);
 
             //nuevaBala.GetComponent<CircleCollider2D>().radius = areaEfecto;
-            nuevaBala.GetComponent<ProyectilExplosivo>().areaGranada = areaEfecto;
+            ProyectilExplosivo proyectilExplosivo = nuevaBala.GetComponent<ProyectilExplosivo>();
+            //pE.areaGranada = areaEfecto;
+            //pE.dañoProyectil = daño;
+            proyectilExplosivo.ActualizarDatos(areaEfecto, daño);
+
+
 
             nuevaBala.GetComponent<Rigidbody2D>()
                         .AddForce(new Vector2(transform.localScale.x * rango,
