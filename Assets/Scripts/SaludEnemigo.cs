@@ -3,9 +3,10 @@ using UnityEngine;
 public class SaludEnemigo : MonoBehaviour
 {
     public float saludEnemigo = 5;
-
+    public GameObject prefabSangre;
     public void AplicarDaño(float dañoObjetivo)
     {
+        Instantiate(prefabSangre, transform.position, transform.rotation);
         if (saludEnemigo - dañoObjetivo > 0)
         {
             saludEnemigo -= dañoObjetivo;
@@ -20,6 +21,7 @@ public class SaludEnemigo : MonoBehaviour
     {
         if (otroObjeto.transform.CompareTag("bala"))
         {
+            Instantiate(prefabSangre, transform.position, transform.rotation);
             saludEnemigo--;
             Destroy(otroObjeto.gameObject);
 

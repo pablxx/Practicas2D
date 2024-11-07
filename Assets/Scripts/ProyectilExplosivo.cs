@@ -8,7 +8,7 @@ public class ProyectilExplosivo : MonoBehaviour
     private float dañoProyectil;
     private float areaGranada;
     public LayerMask capaEnemigos;
-    // Start is called before the first frame update
+    
     void Start()
     {
         StartCoroutine(ExplotarGranada());
@@ -31,9 +31,13 @@ public class ProyectilExplosivo : MonoBehaviour
         if (enemigosDetectados.Length > 0)
         {
             Debug.Log("Enemigos detectados");
-            for (int i = 0; i < enemigosDetectados.Length; i++)
+            for (int i = 0; i < enemigosDetectados.Length - 1; i++)
             {
-                enemigosDetectados[i].transform.GetComponent<SaludEnemigo>().AplicarDaño(dañoProyectil);
+                SaludEnemigo saludEnemigo = enemigosDetectados[i].transform.GetComponent<SaludEnemigo>();
+                if (saludEnemigo != null)
+                {
+                    saludEnemigo.AplicarDaño(dañoProyectil);
+                }
             }
         }
         else
