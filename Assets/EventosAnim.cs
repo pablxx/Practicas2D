@@ -10,4 +10,14 @@ public class EventosAnim : MonoBehaviour
     {
         personaje.RecogerObjeto();
     }
+
+    public void EjecutarEventoArrojar()
+    {
+        personaje.ArrojarObjeto();
+    }
+
+    public void ReproducirPasos()
+    {
+        personaje.SonidoPasos();
+    }
 }

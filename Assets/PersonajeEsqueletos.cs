@@ -16,6 +16,9 @@ public class PersonajeEsqueletos : MonoBehaviour
     public bool objetoCerca;
     public Transform huesoMano;
     public Transform objetoEnMano;
+    public Vector2 fuerzaLanzamiento;
+    //public AudioClip[] misPasos;
+    public AudioSource miParlante;
     //public bool corriendo;
 
     void Update()
@@ -45,7 +48,8 @@ public class PersonajeEsqueletos : MonoBehaviour
         {
             miAnimador.SetTrigger("ataqueC");
         }
-        if (Input.GetButtonDown("Fire2"))
+
+        if (Input.GetButtonDown("Fire2") && objetoEnMano == true)
         {
             miAnimador.SetTrigger("ataqueL");
         }
@@ -72,12 +76,37 @@ public class PersonajeEsqueletos : MonoBehaviour
         if (objetoEnMano != null)
         {
             Debug.Log("Intentando recoger");
-            objetoEnMano.GetComponent<Rigidbody2D>().simulated = false; 
+            objetoEnMano.GetComponent<Rigidbody2D>().simulated = false;
             objetoEnMano.GetComponent<Collider2D>().enabled = false;
             objetoEnMano.parent = huesoMano;
             objetoEnMano.position = new Vector2(huesoMano.position.x + 1f, huesoMano.position.y);
             StartCoroutine(RutinaSubirBrazos());
         }
+    }
+
+    public void SonidoPasos(){
+        miParlante.Play();
+    }
+
+    public void ArrojarObjeto()
+    {
+        if (objetoEnMano != null)
+        {
+            Debug.Log("Soltando recoger");
+            Rigidbody2D cuerpoObjeto = objetoEnMano.GetComponent<Rigidbody2D>();
+            cuerpoObjeto.simulated = true;
+
+            objetoEnMano.GetComponent<Collider2D>().enabled = true;
+            objetoEnMano.parent = null;
+
+            cuerpoObjeto.AddForce(new Vector2(transform.localScale.x * fuerzaLanzamiento.x, fuerzaLanzamiento.y),
+                                  ForceMode2D.Impulse);
+
+            cuerpoObjeto.AddTorque(-4f, ForceMode2D.Impulse);
+            
+            StartCoroutine(RutinaBajarBrazos());
+        }
+        
     }
 
     IEnumerator RutinaSubirBrazos()
@@ -88,6 +117,17 @@ public class PersonajeEsqueletos : MonoBehaviour
             miAnimador.SetLayerWeight(1, pesoActual + 0.25f);
             yield return null;
         }
+    }
+
+    IEnumerator RutinaBajarBrazos()
+    {
+        while (miAnimador.GetLayerWeight(1) > 0)
+        {
+            float pesoActual = miAnimador.GetLayerWeight(1);
+            miAnimador.SetLayerWeight(1, pesoActual - 0.25f);
+            yield return null;
+        }
+        objetoEnMano = null;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
